@@ -1,0 +1,11 @@
+type Query {
+    getEmployee(id: ID): Employee
+}
+
+type Employee {
+    id: ID
+    name: String
+    email: String
+    contact: String
+    salary: Float
+}
