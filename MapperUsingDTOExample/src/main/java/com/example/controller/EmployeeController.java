@@ -5,6 +5,8 @@ import com.example.response.EmployeeRespose;
 import com.example.service.EmployeeService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("api/employee")
 public class EmployeeController {
@@ -23,5 +25,10 @@ public class EmployeeController {
     @GetMapping("/{id}")
     EmployeeRespose getEmployee(@PathVariable Long id) {
         return employeeService.getEmployee(id);
+    }
+
+    @GetMapping
+    List<EmployeeRespose> getEmployees() {
+        return employeeService.getAllEmployees();
     }
 }
