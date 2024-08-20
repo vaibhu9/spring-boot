@@ -31,4 +31,9 @@ public class EmployeeController {
     List<EmployeeRespose> getEmployees() {
         return employeeService.getAllEmployees();
     }
+
+    @PutMapping("/{id}")
+    EmployeeRespose updateEmployee(@PathVariable Long id, EmployeeRequest employeeRequest) {
+        return employeeService.updateEmployee(id, employeeRequest);
+    }
 }
