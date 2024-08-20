@@ -1,5 +1,7 @@
 package com.example.service.impl;
 
+import com.example.entity.Employee;
+import com.example.mapper.EmployeeMapper;
 import com.example.repository.EmployeeRepository;
 import com.example.request.EmployeeRequest;
 import com.example.response.EmployeeRespose;
@@ -19,7 +21,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public EmployeeRespose createEmployee(EmployeeRequest employeeRequest) {
-        return null;
+        Employee employee = EmployeeMapper.INSTANCE.requestToEmployeeEntity(employeeRequest);
+        Employee savedEmployee = employeeRepository.save(employee);
+        return EmployeeMapper.INSTANCE.employeeEntityToRespose(savedEmployee);
     }
 
     @Override
