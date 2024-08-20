@@ -3,9 +3,7 @@ package com.example.controller;
 import com.example.request.EmployeeRequest;
 import com.example.response.EmployeeRespose;
 import com.example.service.EmployeeService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/employee")
@@ -20,5 +18,10 @@ public class EmployeeController {
     @PostMapping
     EmployeeRespose createEmployee(EmployeeRequest employeeRequest) {
         return employeeService.createEmployee(employeeRequest);
+    }
+
+    @GetMapping("/{id}")
+    EmployeeRespose getEmployee(@PathVariable Long id) {
+        return employeeService.getEmployee(id);
     }
 }
