@@ -28,17 +28,26 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public EmployeeRespose getEmployee(Long id) {
-        return null;
+        Employee employee = employeeRepository.findById(id).get();
+        return EmployeeMapper.INSTANCE.employeeEntityToRespose(employee);
     }
 
     @Override
     public List<EmployeeRespose> getAllEmployees() {
-        return List.of();
+        List<Employee> employees = employeeRepository.findAll();
+        return EmployeeMapper.INSTANCE.employeeEntityListToRespose(employees);
     }
 
     @Override
     public EmployeeRespose updateEmployee(Long id, EmployeeRequest employeeRequest) {
-        return null;
+        Employee employee = employeeRepository.findById(id).get();
+        if(!employeeRepository.existsById(id)){
+            return null;
+        }
+        Employee updatedEmployee = EmployeeMapper.INSTANCE.requestToEmployeeEntity(employeeRequest);
+        updatedEmployee.setId(id);
+        employeeRepository.save(updatedEmployee);
+        return EmployeeMapper.INSTANCE.employeeEntityToRespose(updatedEmployee);
     }
 
     @Override
